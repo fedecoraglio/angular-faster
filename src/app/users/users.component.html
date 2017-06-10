@@ -1,0 +1,13 @@
+<header>
+      Mi Angular One Framework!
+</header>
+<main>
+  <div>
+      <h1>{{message}}</h1>
+  </div>
+  <div *ngIf="users">
+    <div *ngFor="let u of users">
+        {{u.name}} {{u.username}}
+    </div>
+  </div>
+</main>
