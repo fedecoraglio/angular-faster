@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class UsersComponent implements OnInit {
   message:string;
   users: Array<any>;
+  activeUser;
 
   constructor() { }
 
@@ -17,7 +18,11 @@ export class UsersComponent implements OnInit {
       {id: "25", name: "Leo", username:"Leonel"},
       {id: "26", name: "Diego", username:"Diegote"},
       {id: "27", name: "Martin", username:"tincho"}
-    ]
+    ];
+  }
+
+  selectUser(user) {
+    this.activeUser = user;
   }
 
 }

@@ -6,8 +6,18 @@
       <h1>{{message}}</h1>
   </div>
   <div *ngIf="users">
-    <div *ngFor="let u of users">
-        {{u.name}} {{u.username}}
+    <ul>
+      <li *ngFor="let u of users" (click)="selectUser(u)">
+          {{u.name}} {{u.username}}
+      </li>
+    </ul>
+  </div>
+  <div>
+    <div *ngIf="activeUser">
+      <h2>{{activeUser.name}} <small>{{activeUser.username}}</small></h2>
+    </div>
+    <div *ngIf="!activeUser">
+      <h2>Choose a User</h2>
     </div>
   </div>
 </main>
