@@ -26,4 +26,8 @@ export class UsersComponent implements OnInit {
     this.activeUser = user;
   }
 
+  onUserCreated(event) {
+    this.users.push(event.user);
+  }
+
 }

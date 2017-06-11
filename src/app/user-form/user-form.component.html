@@ -1,11 +1,13 @@
-<form>
+<form #userForm="ngForm" (ngSubmit)="onSubmit()" >
   <div class="form-group">
-    <input type="text" placeholder="Name"  class="form-control" name="name" required>
+    <input type="text" placeholder="Name"  class="form-control" name="name" required 
+           [(ngModel)]="newUser.name">
   </div>
   <div class="form-group">
-    <input type="text" placeholder="User name" class="form-control" name="username" required>
+    <input type="text" placeholder="User name" class="form-control" name="username" required
+           [(ngModel)]="newUser.username">
   </div>
-  <button type="submit"  class="btn btn-primary btn-lg btn-block">
+  <button type="submit"  class="btn btn-primary btn-lg btn-block" [disabled]="userForm.invalid">
       Crear Usuario
   </button>
 </form>

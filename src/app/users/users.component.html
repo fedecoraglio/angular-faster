@@ -15,7 +15,7 @@
             {{u.name}} {{u.username}}
         </li>
       </ul>
-      <app-user-form></app-user-form>
+      <app-user-form (userCreatedEvent)="onUserCreated($event)"></app-user-form>
     </div>
     <div class="col-sm-8 user-actived">
       <div *ngIf="activeUser">
