@@ -1,4 +1,4 @@
-<form #userForm="ngForm" (ngSubmit)="onSubmit()" >
+<form #userForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="active">
   <div class="form-group" [class.has-error]="name.invalid && name.touched">
     <input type="text" placeholder="Nombre" class="form-control" name="name" required 
            [(ngModel)]="newUser.name" #name="ngModel">
