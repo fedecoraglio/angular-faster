@@ -18,13 +18,14 @@ export class UsersComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.users = [];
-    this.userService.getUsers()
-        .subscribe((resp) => {
-          for(let u of resp) {
-            this.users.push(new User(u.id, u.name, u.username));
-          }
-      });
+    this.loadUsers();
+  }
+
+  deleteUser() {
+    this.userService.deleteUser(this.activeUser.id).subscribe((resp) => {
+       this.activeUser = null;
+       this.loadUsers();
+    });
   }
 
   selectUser(user) {
@@ -32,7 +33,17 @@ export class UsersComponent implements OnInit {
   }
 
   onUserCreated(event) {
-    this.users.push(event.user);
+    this.loadUsers();
+  }
+
+  private loadUsers() {
+    this.users = [];
+    this.userService.getUsers()
+        .subscribe((resp) => {
+          for(let u of resp) {
+            this.users.push(new User(u.id, u.name, u.username));
+          }
+      });
   }
 
 }

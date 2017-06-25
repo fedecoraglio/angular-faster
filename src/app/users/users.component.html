@@ -19,7 +19,8 @@
     </div>
     <div class="col-sm-8 user-actived">
       <div *ngIf="activeUser">
-        <h2>{{activeUser.name}} <small>{{activeUser.username}}</small></h2>
+        <div class="col-sm-11"><h2>{{activeUser.name}} <small>{{activeUser.username}}</small></h2></div>
+        <div class="col-sm-1"><h2 (click)="deleteUser()" class="hang glyphicon glyphicon-trash"></h2></div>
       </div>
       <div *ngIf="!activeUser">
         <h2>Seleccionar un usuario</h2>

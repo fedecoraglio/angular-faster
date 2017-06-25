@@ -19,6 +19,10 @@ export class UserService {
         .map(res => res.json());
   }
 
+  deleteUser(id) {
+    return this.http.delete(SERVER_REST_API_URL + id);
+  }
+
   saveUser(user:User) {
     let body = JSON.stringify({
         "id": user.id,
