@@ -12,4 +12,5 @@
   <button type="submit"  class="btn btn-primary btn-lg btn-block" [disabled]="userForm.invalid">
       Crear Usuario
   </button>
+    <span *ngIf="messageErrorForm">{{messageErrorForm}}</span>
 </form>

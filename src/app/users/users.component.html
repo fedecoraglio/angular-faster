@@ -6,6 +6,7 @@
       </li>
     </ul>
     <app-user-form (userCreatedEvent)="onUserCreated($event)"></app-user-form>
+    <span *ngIf="messageError">{{messageError}}</span>
   </div>
   <div class="col-sm-8">
     <div *ngIf="activeUser" class="user-actived">

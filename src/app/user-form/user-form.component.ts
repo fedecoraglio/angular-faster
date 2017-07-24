@@ -12,20 +12,42 @@ export class UserFormComponent implements OnInit {
   newUser: User;
   userService:UserService;
   active:boolean= true;
+  messageErrorForm: string;
 
   constructor(userService: UserService) {
     this.userService = userService;
+    this.userService.test.subscribe((res) => {
+      console.log("dentro de form " + res);
+    })
   }
 
   onSubmit() {
-    this.userService.saveUser(this.newUser)
-        .subscribe(()=>{
-          this.userCreatedEvent.emit({user: this.newUser});
-          this.active = false;
-          this.newUser = new User("","","");
-          setTimeout(() => {  this.active = true; }, 0);          
-      });        
+    this.userService.getUsers().subscribe(
+      (resp) => {
+        let usernameIsAvailable = true;
+        for(let u of resp) {
+          if(u.username === this.newUser.username) {
+            usernameIsAvailable = false;
+            break;
+          }
+        }
+        if(usernameIsAvailable) {
+          this.userService.saveUser(this.newUser)
+              .subscribe(()=>{
+                this.userCreatedEvent.emit({user: this.newUser, error:null});
+                this.active = false;
+                this.newUser = new User("","","");
+                setTimeout(() => {  this.active = true; }, 0);          
+            });
+        } else {
+          this.messageErrorForm = "El usuario ya existe dentro de app-form"
+          //this.userCreatedEvent.emit({user:null, error:"El usuario ya existe"});
+        }
+      }
+    )
   }
+
+
 
   ngOnInit() {
     this.newUser = new User("","","");

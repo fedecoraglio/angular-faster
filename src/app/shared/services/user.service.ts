@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs';
 import { User } from '../models/user';
@@ -11,8 +11,10 @@ export class UserService {
 
   private http: Http;
   private serverRestAPIUrl: string;
+  test: EventEmitter<any>;
 
   constructor(http:Http) {
+    this.test = new EventEmitter();
     this.http = http;
     this.serverRestAPIUrl = environment.apiEndPoint + "/users";
   }
@@ -23,7 +25,8 @@ export class UserService {
   }
 
   deleteUser(id) {
-    return this.http.delete(this.serverRestAPIUrl + id);
+    this.test.emit("Este es mi nuevo test");
+    return this.http.delete(this.serverRestAPIUrl + "/" + id);
   }
 
   saveUser(user:User) {

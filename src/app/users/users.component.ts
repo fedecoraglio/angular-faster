@@ -12,9 +12,13 @@ export class UsersComponent implements OnInit {
   users: Array<User>;
   activeUser;
   userService:UserService;
+  messageError: string;
 
   constructor(userService: UserService) {
     this.userService = userService;
+    this.userService.test.subscribe((res) => {
+      console.log("dentro de users " + res);
+    })
    }
 
   ngOnInit() {
@@ -33,7 +37,12 @@ export class UsersComponent implements OnInit {
   }
 
   onUserCreated(event) {
-    this.loadUsers();
+    if(event.error !== null && event.error !== undefined) {
+      this.messageError = event.error;
+    } else {
+      this.loadUsers();
+    }
+    
   }
 
   private loadUsers() {
