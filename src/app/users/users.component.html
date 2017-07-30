@@ -9,7 +9,7 @@
   </div>
   <div class="col-sm-8">
     <div *ngIf="activeUser" class="user-actived">
-      <div class="col-sm-11"><h2>{{activeUser.name}} <small>{{activeUser.username}}</small></h2></div>
+      <div class="col-sm-11" appHighlight highlightcolor="yellow" ><h2>{{activeUser.name}} <small>{{activeUser.username}}</small></h2></div>
       <div class="col-sm-1"><h2 (click)="deleteUser()" class="hang glyphicon glyphicon-trash"></h2></div>
     </div>
     <div *ngIf="!activeUser" class="user-actived">

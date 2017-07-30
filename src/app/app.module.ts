@@ -12,6 +12,7 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { UserService } from './shared/services/user.service';
 import { AnimationsComponent } from './animations/animations.component';
 import { ContactComponent } from './contact/contact.component';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ContactComponent } from './contact/contact.component';
     UsersComponent,
     UserFormComponent,
     AnimationsComponent,
-    ContactComponent
+    ContactComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
