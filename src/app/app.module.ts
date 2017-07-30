@@ -11,13 +11,15 @@ import { UsersComponent } from './users/users.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UserService } from './shared/services/user.service';
 import { AnimationsComponent } from './animations/animations.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     UserFormComponent,
-    AnimationsComponent
+    AnimationsComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,7 @@ import { AnimationsComponent } from './animations/animations.component';
     BrowserAnimationsModule
   ],
   providers: [
-    UserService
+    UserService    
   ],
   bootstrap: [AppComponent]
 })

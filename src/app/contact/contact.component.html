@@ -1,0 +1,108 @@
+<div class="row">
+  <div class="col-md-12">
+    <form  #contactForm="ngForm" (ngSubmit)="onSubmit()" class="form-horizontal" >
+      <div class="form-group">
+        <label for="firstName" class="col-sm-2 control-label">First Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="firstName" #firstName="ngModel"
+                 [(ngModel)]="contactData.firstName" placeholder="Enter First Name" required minlength="4" maxlength="80" >
+          <span *ngIf="firstName.errors !== null && firstName.errors.required && firstName.touched" class="help-block">
+              Your First name is required.
+          </span>
+          <span *ngIf="firstName.errors !== null && firstName.errors.minlength && firstName.touched" class="help-block"> 
+              First name must be at least 4 characters long.
+          </span>
+          <span *ngIf="firstName.errors !== null && firstName.errors.maxlength && firstName.touched" class="help-block">
+            First name cannot be more than 80 characters long.
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="lastName" name="lastName"  #lastName="ngModel" 
+                 [(ngModel)]="contactData.lastName" placeholder="Enter Last Name" required required minlength="4" maxlength="80">
+                    <span *ngIf="firstName.errors !== null && firstName.errors.required && firstName.touched" class="help-block">
+              Your Last name is required.
+          </span>
+          <span *ngIf="lastName.errors !== null && lastName.errors.minlength && lastName.touched" class="help-block"> 
+              Last name must be at least 4 characters long.
+          </span>
+          <span *ngIf="lastName.errors !== null && lastName.errors.maxlength && lastName.touched" class="help-block">
+            Last name cannot be more than 80 characters long.
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="telnum" class="col-sm-2 control-label">Contact Tel.</label>
+        <div class="col-xs-5 col-sm-4 col-md-3">
+          <div class="input-group">
+            <div class="input-group-addon">(</div>
+                <input type="text" class="form-control" maxlength="5" name="phoneArea" 
+                       #phoneArea="ngModel" [(ngModel)]="contactData.phoneArea" placeholder="Area code">
+            <div class="input-group-addon">)</div>
+          </div>
+        </div>
+        <div class="col-xs-7 col-sm-6 col-md-7">
+          <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" #phoneNumber="ngModel"
+                 [(ngModel)]="contactData.phoneNumber" placeholder="Tel. number">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="email" name="email" #email="ngModel"
+                 [(ngModel)]="contactData.email" placeholder="Email" required email="true" [email]="true">
+          <span *ngIf="email.errors !== null && email.errors.required && email.touched" class="help-block">
+            Enter an email address.
+          </span>
+          <span *ngIf="email.errors !== null && email.errors.email && email.touched" class="help-block">
+            Enter a valid email address.
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="checkbox col-sm-5 col-sm-offset-2">
+          <label class="checkbox-inline">
+            <input type="checkbox" name="mayContactYou" #mayContactYou [(ngModel)]="contactData.mayContactYou">
+            <strong>May we contact you?</strong>
+          </label>
+        </div>
+        <div class="col-sm-3 col-sm-offset-1">
+          <select *ngIf="contactData.mayContactYou" class="form-control" name="contactOption"
+                  [(ngModel)]="contactData.contactOption" #contactOption="ngModel">
+            <option *ngFor="let o of options" value="{{o.value}}">{{o.value}}</option>
+          </select>
+          <span *ngIf="contactData.mayContactYou && contactData.contactOption === null" class="help-block">Select an option.</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="feedback" class="col-sm-2 control-label">Your Feedback</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" required [(ngModel)]="contactData.feedback" #feedback="ngModel" name="feedback" rows="12"></textarea>
+          <span *ngIf="feedback.invalid && feedback.touched" class="help-block"> 
+              Please, enter your comment
+          </span>
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid || processing" 
+                  data-loading-text="test">{{buttonToSendFeedback}}</button>
+        </div>
+      </div>
+        
+      <div class="form-group" *ngIf="showMessageInfo">
+        <div class="alert alert-info" ng-show="showMessage">
+            Gracias por comunicarse con nosotros.
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
